@@ -5,7 +5,7 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { hideLoginError, loginRequest } from "../../features/auth/authSlice";
+import { hideLoginError, loginRequest } from "../../features/login/loginSlice";
 
 const Login = () => {
   const schema = yup.object().shape({
