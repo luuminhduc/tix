@@ -1,21 +1,20 @@
 import React from "react";
-import { Container, TextField, Button } from "@mui/material";
+import { Container, TextField, Button, Alert, Typography } from "@mui/material";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { loginRequest } from "../../features/auth/authSlice";
+import { hideLoginError, loginRequest } from "../../features/auth/authSlice";
 
 const Login = () => {
   const schema = yup.object().shape({
     taiKhoan: yup.string().required(),
-    password: yup.string().min(6).max(32).required(),
+    matKhau: yup.string().min(6).max(32).required(),
   });
-
   const dispatch = useDispatch();
 
-  const authReducer = useSelector((state) => state.authReducer);
+  const { loginError } = useSelector((state) => state.authReducer);
 
   const {
     register,
@@ -34,6 +33,13 @@ const Login = () => {
         maxWidth="xs"
         sx={{ backgroundColor: "white", borderRadius: "5px", padding: "40px" }}
       >
+        <Typography
+          component="h4"
+          sx={{ textAlign: "center", marginBottom: "20px" }}
+          variant="h4"
+        >
+          Login
+        </Typography>
         <form onSubmit={handleSubmit(submit)}>
           <TextField
             {...register("taiKhoan")}
@@ -43,13 +49,25 @@ const Login = () => {
             sx={{ width: "100%", marginBottom: "20px" }}
           />
           <TextField
-            {...register("password")}
-            error={errors.password ? true : false}
-            helperText={errors.password?.message}
-            label="Password"
+            {...register("matKhau")}
+            error={errors.matKhau ? true : false}
+            helperText={errors.matKhau?.message}
+            label="Mat khau"
             type="password"
             sx={{ width: "100%", marginBottom: "20px" }}
           />
+          {loginError && (
+            <Alert
+              sx={{ marginBottom: "20px" }}
+              severity="error"
+              variant="filled"
+              onClose={() => {
+                dispatch(hideLoginError());
+              }}
+            >
+              {loginError}
+            </Alert>
+          )}
           <Button
             type="submit"
             size="large"

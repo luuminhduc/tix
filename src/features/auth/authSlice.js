@@ -4,23 +4,24 @@ import axios from "axios";
 export const loginRequest = createAsyncThunk(
   "loginRequest",
   async (params, thunkApi) => {
-    const { user } = params;
     try {
+      const { user } = params;
       const res = await axios.post(
         "https://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/DangNhap",
         user
       );
       if (res.status === 200 || res.status === 201) {
+        const data = res.data;
+        thunkApi.dispatch(loginRequestSuccess(data));
       }
     } catch (err) {
-      console.log(err.response.data);
-      //  dispatch(showError(err.response.data));
+      thunkApi.dispatch(showLoginErr(err.response.data));
     }
   }
 );
 
 const initialState = {
-  taiKhoan: JSON.parse(localStorage.getItem("taiKhoan")),
+  user: JSON.parse(localStorage.getItem("user")),
   loginError: "",
 };
 
@@ -28,18 +29,23 @@ const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    showLoginErr: (state, err) => {
-      state.loginError = err;
+    showLoginErr: (state, action) => {
+      state.loginError = action.payload;
     },
-  },
-  extraReducers: {
-    // [loginRequest.fulfilled]: (state, action) => {
-    //   state.imageList = action.payload;
-    // },
+    hideLoginError: (state) => {
+      state.loginError = "";
+    },
+    loginRequestSuccess: (state, action) => {
+      const user = action.payload;
+      localStorage.setItem("user", JSON.stringify(user));
+      state.user = user;
+      state.loginError = "";
+    },
   },
 });
 
-export const { showLoginErr } = authSlice.actions;
+export const { showLoginErr, hideLoginError, loginRequestSuccess } =
+  authSlice.actions;
 
 const { reducer: authReducer } = authSlice;
 
