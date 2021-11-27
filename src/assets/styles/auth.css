@@ -1,0 +1,10 @@
+.auth {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url("../images/background.b46ef3a1.jpg");
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+}
