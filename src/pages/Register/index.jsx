@@ -14,9 +14,8 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { hideLoginError, loginRequest } from "../../features/auth/authSlice";
 import { Box } from "@mui/system";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import {
   hideRegisterError,
   registerRequest,
@@ -36,6 +35,8 @@ const Register = () => {
     agree: yup.bool(),
   });
   const dispatch = useDispatch();
+
+  const history = useHistory();
 
   const { registerError } = useSelector((state) => state.registerReducer);
 
@@ -57,7 +58,7 @@ const Register = () => {
       };
       delete user.matKhauConfirm;
       delete user.agree;
-      dispatch(registerRequest({ user }));
+      dispatch(registerRequest({ user, history }));
     }
   };
   return (

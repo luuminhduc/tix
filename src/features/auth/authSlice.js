@@ -5,14 +5,14 @@ export const loginRequest = createAsyncThunk(
   "loginRequest",
   async (params, thunkApi) => {
     try {
-      const { user } = params;
+      const { user, history } = params;
       const res = await axios.post(
         "https://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/DangNhap",
         user
       );
       if (res.status === 200 || res.status === 201) {
         const data = res.data;
-        thunkApi.dispatch(loginRequestSuccess(data));
+        thunkApi.dispatch(loginRequestSuccess({ user: data, history }));
       }
     } catch (err) {
       thunkApi.dispatch(showLoginErr(err.response.data));
@@ -36,10 +36,11 @@ const authSlice = createSlice({
       state.loginError = "";
     },
     loginRequestSuccess: (state, action) => {
-      const user = action.payload;
+      const { user, history } = action.payload;
       localStorage.setItem("user", JSON.stringify(user));
       state.user = user;
       state.loginError = "";
+      history.goBack();
     },
   },
 });

@@ -4,7 +4,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-// import HomeRoute from "./helpers/guards/homeRoute";
+import HomeRoute from "./helpers/guards/homeRoute";
 import store from "./redux/store";
 
 const App = () => {
@@ -17,6 +17,9 @@ const App = () => {
           </Route>
           <Route exact path="/register">
             <Register />
+          </Route>
+          <Route exact path="/">
+            <HomeRoute component={Home} />
           </Route>
         </Switch>
       </BrowserRouter>

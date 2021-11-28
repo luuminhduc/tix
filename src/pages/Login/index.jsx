@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { hideLoginError, loginRequest } from "../../features/auth/authSlice";
 import { Box } from "@mui/system";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 const Login = () => {
   const schema = yup.object().shape({
@@ -18,6 +18,7 @@ const Login = () => {
 
   const { loginError } = useSelector((state) => state.authReducer);
 
+  const history = useHistory();
   const {
     register,
     handleSubmit,
@@ -27,7 +28,7 @@ const Login = () => {
   });
 
   const submit = (data) => {
-    dispatch(loginRequest({ user: data }, "ngu"));
+    dispatch(loginRequest({ user: data, history }));
   };
   return (
     <div className="auth">
