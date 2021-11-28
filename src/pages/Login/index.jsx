@@ -6,6 +6,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { hideLoginError, loginRequest } from "../../features/auth/authSlice";
+import { Box } from "@mui/system";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const schema = yup.object().shape({
@@ -68,6 +70,11 @@ const Login = () => {
               {loginError}
             </Alert>
           )}
+          <Box sx={{ textAlign: "right", marginBottom: "20px" }}>
+            <Typography component="small" variant="small">
+              Do not have an account?<Link to="/register">Register</Link>
+            </Typography>
+          </Box>
           <Button
             type="submit"
             size="large"
