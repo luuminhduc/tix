@@ -5,8 +5,7 @@ import axios from "axios";
 export const registerRequest = createAsyncThunk(
   "registerRequest",
   async (params, thunkApi) => {
-    const { user } = params;
-    console.log(user);
+    const { user, history } = params;
     try {
       const res = await axios({
         method: "POST",
@@ -16,7 +15,7 @@ export const registerRequest = createAsyncThunk(
       if (res.status === 200 || res.status === 201) {
         const data = res.data;
         console.log(data);
-        thunkApi.dispatch(loginRequestSuccess(data));
+        thunkApi.dispatch(loginRequestSuccess({ user: data, history }));
       }
     } catch (err) {
       thunkApi.dispatch(registerRequestFail(err.response.data));
