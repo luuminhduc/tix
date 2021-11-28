@@ -1,6 +1,7 @@
 import React from "react";
 import { Provider } from "react-redux";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
+import Header from "./components/Header";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -11,6 +12,7 @@ const App = () => {
   return (
     <Provider store={store}>
       <BrowserRouter>
+        <Header />
         <Switch>
           <Route exact path="/login">
             <Login />

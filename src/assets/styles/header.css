@@ -1,0 +1,38 @@
+@media only screen and (min-width: 350px) {
+  .header {
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.9);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+  a {
+    color: black;
+    font-size: 15px;
+  }
+  img {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+@media only screen and (min-width: 800px) {
+  .header {
+    padding: 10px 80px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: calc(100% / 3 * 2);
+  }
+  .nav_link_list a {
+    margin-right: 20px;
+  }
+}
