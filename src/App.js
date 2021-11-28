@@ -3,6 +3,7 @@ import { Provider } from "react-redux";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
+import Register from "./pages/Register";
 // import HomeRoute from "./helpers/guards/homeRoute";
 import store from "./redux/store";
 
@@ -13,6 +14,9 @@ const App = () => {
         <Switch>
           <Route exact path="/login">
             <Login />
+          </Route>
+          <Route exact path="/register">
+            <Register />
           </Route>
         </Switch>
       </BrowserRouter>
