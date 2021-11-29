@@ -9,13 +9,13 @@ const Header = () => {
       </Link>
       <nav>
         <div className="nav_link_list">
-          <Link>Lich chieu</Link>
-          <Link>Lich chieu</Link>
-          <Link>Lich chieu</Link>
-          <Link>Lich chieu</Link>
+          <Link to="/">Lich chieu</Link>
+          <Link to="/">Lich chieu</Link>
+          <Link to="/">Lich chieu</Link>
+          <Link to="/">Lich chieu</Link>
         </div>
         <div className="nav_link_action">
-          <Link>Dang nhap</Link>
+          <Link to="/">Dang nhap</Link>
         </div>
       </nav>
     </div>

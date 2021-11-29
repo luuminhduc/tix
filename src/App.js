@@ -12,7 +12,6 @@ const App = () => {
   return (
     <Provider store={store}>
       <BrowserRouter>
-        <Header />
         <Switch>
           <Route exact path="/login">
             <Login />
