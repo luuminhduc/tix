@@ -1,0 +1,32 @@
+.carousel {
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.carousel_item {
+  text-align: center;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  height: 80vh;
+}
+.carousel_item_1 {
+  background: url("../images/carousel1.png");
+}
+.carousel_item_2 {
+  background: url("../images/carousel2.jpeg");
+}
+.carousel_item_3 {
+  background: url("../images/carousel3.png");
+}
+.carousel .carousel-indicators button {
+  background-color: white;
+  border-radius: 100%;
+  height: 10px;
+  width: 10px;
+}
+
+.carousel .carousel-indicators button.active {
+  background-color: red;
+}
