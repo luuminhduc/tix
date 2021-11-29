@@ -7,9 +7,10 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { hideLoginError, loginRequest } from "../../features/auth/authSlice";
 import { Box } from "@mui/system";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 
-const Login = () => {
+const Login = ({ state }) => {
+  console.log(state);
   const schema = yup.object().shape({
     taiKhoan: yup.string().required(),
     matKhau: yup.string().min(6).max(32).required(),
@@ -19,6 +20,8 @@ const Login = () => {
   const { loginError } = useSelector((state) => state.authReducer);
 
   const history = useHistory();
+  const location = useLocation();
+  console.log(location);
   const {
     register,
     handleSubmit,
@@ -28,7 +31,7 @@ const Login = () => {
   });
 
   const submit = (data) => {
-    dispatch(loginRequest({ user: data, history }));
+    dispatch(loginRequest({ user: data, history, location }));
   };
   return (
     <div className="auth">
