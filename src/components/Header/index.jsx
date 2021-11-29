@@ -15,7 +15,7 @@ const Header = () => {
           <Link to="/">Lich chieu</Link>
         </div>
         <div className="nav_link_action">
-          <Link to="/">Dang nhap</Link>
+          <Link to="/login">Dang nhap</Link>
         </div>
       </nav>
     </div>

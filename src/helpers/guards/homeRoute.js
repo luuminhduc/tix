@@ -7,6 +7,7 @@ const ProtectedRoute = ({ component: Component, ...rest }) => {
   const { user } = useSelector((state) => state.authReducer);
   return (
     <Route
+      {...rest}
       render={(props) => {
         if (user)
           return (
